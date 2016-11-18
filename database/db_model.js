@@ -42,12 +42,17 @@ router.post('/api/postCookie', (req,res) => {
 //in an example object. Make sure you set it as 
 //'JSON application/JSON' instead of 'text'
 router.post('/api/addUser', (req, res) => {
+	db.Users.create({Name: req.body.name, Age: req.body.age, Birthday: req.body.birthday})
+	.then(user => res.send(user))
+	.catch(error => res.send(error))
 
 })
 
 //In postman, make sure you're making a GET request
 router.get('/api/getAllUsers', (req, res) => {
-
+	db.Users.findAll()
+	.then(data => res.send(data))
+	.catch(error => res.send(error))
 })
 
 
